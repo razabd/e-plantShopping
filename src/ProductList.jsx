@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addItem } from './CartSlice';
-import './ProductList.css'; // Ensure you have your styles imported
+import './ProductList.css';
 import CartItem from './CartItem';
 
 function ProductList({ onHomeClick }) {
@@ -9,7 +9,6 @@ function ProductList({ onHomeClick }) {
     const [showCart, setShowCart] = useState(false);
     const [showPlants, setShowPlants] = useState(false); 
     
-    // 1. Create state to track added products
     const [addedToCart, setAddedToCart] = useState({});
 
     const plantsArray = [
@@ -262,12 +261,11 @@ function ProductList({ onHomeClick }) {
         setShowCart(false);
     };
 
-    // 2. Add to Cart Functionality
     const handleAddToCart = (product) => {
         dispatch(addItem(product));
         setAddedToCart((prevState) => ({
            ...prevState,
-           [product.name]: true, // update state to indicate product added
+           [product.name]: true,
         }));
     };
 
@@ -291,7 +289,6 @@ function ProductList({ onHomeClick }) {
                 </div>
             </div>
             {!showCart ? (
-                // 3. Display Plant Details within div with class name product-grid
                 <div className="product-grid">
                     {plantsArray.map((category, index) => (
                         <div key={index}>
